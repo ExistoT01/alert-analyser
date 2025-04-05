@@ -1,0 +1,8 @@
+playground.ipynb
+.idea/
+data/
+.ipynb_checkpoints/
+__pycache__/       
+logs/
+res/samples/
+zips/

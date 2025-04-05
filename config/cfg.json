@@ -1,0 +1,167 @@
+{
+   "set_session_id":{
+      "url":"http://10.245.0.121:49011/serviceDiscovery/cloud.alarm.userdefined.query/sysadminAlarm/record-new-page",
+      "headers":{
+         "accept":"application/json",
+         "accept-language":"zh-CN,zh;q=0.9",
+         "apptoken":"Ivf5n6o8CBu7CNpT45Gz+oWj9mcALzDJIWKqjkjMoMUk2RJi3KVeWITjwQ9jy55omysCxizJUnTKzwO1JheEPTA+CsyV+EcWMOmZNobMydaYTj1CUEVCSA0W0FvvnParUUTXRYbc2PzAbIiFTEhAra+hy0C4k0V7L9EV1ud9q/o=",
+         "authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDI3MjQ0NzMyNTksImlhdCI6MTc0MjcxNzI3MywidXNlcklkIjoiMTEzMDgzMSIsImp0aSI6IjkyZThjNGNkYTYzMzQwMjMzYTRiNWQ4YmY5ZGI2MzE2NmFlNWNjN2UifQ.DSh90iRryOWJauXXZLv7_ZimFmQj3GdpM1yLIyhUs-I",
+         "content-type":"application/json",
+         "operid":"300001",
+         "publickey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDc7i0VItfwG/8PRZ8/AEe55QFGJMs8Zt9vNZ1VRP3Wr1NbvkhrihX6MerUOR+EbKu8hb91ue0YrLR+Lb3TBy2Ihyddwx2jCoZ2Cx67nRVaBQmWdwsOMhRviRVbOyflGdZ2oolw3b9kefK/UvuAAdLpPZzrl4FZWfm7FJrBLHyQQwIDAQAB",
+         "zoneid":"1321688157"
+      },
+      "payload":{
+         "alarmOrigin":0,
+         "alarmsenceId":0,
+         "asc":false,
+         "fieldConditions":{
+            "conditionList":[
+               {
+                  "fieldId":137,
+                  "not":false,
+                  "type":"eq",
+                  "value":"1321688157",
+                  "values":[
+                     "1321688157"
+                  ]
+               }
+            ],
+            "logicalAnd":true,
+            "not":true
+         },
+         "mConditionMaps":{
+
+         },
+         "fieldIds":[
+            33,
+            23,
+            91,
+            138,
+            63,
+            62,
+            4,
+            16,
+            18,
+            30,
+            92,
+            52,
+            56,
+            68,
+            100,
+            94,
+            103,
+            106,
+            104,
+            108,
+            105,
+            107,
+            110,
+            109,
+            111,
+            229,
+            457,
+            462
+         ],
+         "logicalAnd":true,
+         "sessionId":null,
+         "sortFieldId":-1,
+         "userId":"1130831",
+         "dateBean":{
+            "endTime":null,
+            "fieldId":62,
+            "not":false,
+            "startTime":null,
+            "type":"type"
+         },
+         "defaultFieldIds":[
+            64,
+            62,
+            68,
+            137,
+            33,
+            35,
+            7,
+            16,
+            30,
+            116,
+            23,
+            9,
+            4
+         ],
+         "loginProvinceId":"1321688157",
+         "pageSize":50,
+         "startIndex":0
+      }
+   },
+
+   "export_csv_files":{
+      "url":"http://10.245.0.121:49011/serviceDiscovery/cloud.alarm.userdefined.query/sysadminAlarm/fullExportInit",
+      "headers":{
+         "accept": "application/json",
+         "accept-language": "zh-CN,zh;q=0.9",
+         "apptoken": "Ivf5n6o8CBu7CNpT45Gz+oWj9mcALzDJIWKqjkjMoMUk2RJi3KVeWITjwQ9jy55omysCxizJUnTKzwO1JheEPTA+CsyV+EcWMOmZNobMydaYTj1CUEVCSA0W0FvvnParUUTXRYbc2PzAbIiFTEhAra+hy0C4k0V7L9EV1ud9q/o=",
+         "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDI3MDAxNzk3MTksImlhdCI6MTc0MjY5Mjk3OSwidXNlcklkIjoiMTEzMDgzMSIsImp0aSI6ImY1ZjkwOTFlZDBiNWM1ZDRkODgzNGQ1NjJlYmNkOGQ5YmY5NzEwMDIifQ.UONzD7p7AX5UtyuUwEhV54gLH0voSlYz5hE_t99uiNY",
+         "cache-control": "no-cache",
+         "content-type": "application/json",
+         "operid": "300005",
+         "pragma": "no-cache",
+         "publickey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDc7i0VItfwG/8PRZ8/AEe55QFGJMs8Zt9vNZ1VRP3Wr1NbvkhrihX6MerUOR+EbKu8hb91ue0YrLR+Lb3TBy2Ihyddwx2jCoZ2Cx67nRVaBQmWdwsOMhRviRVbOyflGdZ2oolw3b9kefK/UvuAAdLpPZzrl4FZWfm7FJrBLHyQQwIDAQAB",
+         "zoneid": "1321688157"
+      },
+      "payload":{
+          "exportType": "1",
+          "sessionId": null,
+          "userId": 1130831
+      }
+   },
+   "check_export_progress":{
+      "url":"http://10.245.0.121:49011/serviceDiscovery/cloud.alarm.userdefined.query/sysadminAlarm/fullExportProcess",
+      "headers":{
+         "accept": "application/json",
+         "accept-language": "zh-CN,zh;q=0.9",
+         "apptoken": "Ivf5n6o8CBu7CNpT45Gz+oWj9mcALzDJIWKqjkjMoMUk2RJi3KVeWITjwQ9jy55omysCxizJUnTKzwO1JheEPTA+CsyV+EcWMOmZNobMydaYTj1CUEVCSA0W0FvvnParUUTXRYbc2PzAbIiFTEhAra+hy0C4k0V7L9EV1ud9q/o=",
+         "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDI3MDAxNzk3MTksImlhdCI6MTc0MjY5Mjk3OSwidXNlcklkIjoiMTEzMDgzMSIsImp0aSI6ImY1ZjkwOTFlZDBiNWM1ZDRkODgzNGQ1NjJlYmNkOGQ5YmY5NzEwMDIifQ.UONzD7p7AX5UtyuUwEhV54gLH0voSlYz5hE_t99uiNY",
+         "cache-control": "no-cache",
+         "content-type": "application/json",
+         "operid": "300005",
+         "pragma": "no-cache",
+         "publickey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDc7i0VItfwG/8PRZ8/AEe55QFGJMs8Zt9vNZ1VRP3Wr1NbvkhrihX6MerUOR+EbKu8hb91ue0YrLR+Lb3TBy2Ihyddwx2jCoZ2Cx67nRVaBQmWdwsOMhRviRVbOyflGdZ2oolw3b9kefK/UvuAAdLpPZzrl4FZWfm7FJrBLHyQQwIDAQAB",
+         "zoneid": "1321688157"
+      },
+      "payload":{
+         "userId": 1130831
+      }
+   },
+   "download_files":{
+      "url":"http://10.245.0.121:49011/filter",
+      "headers":{
+         "accept": "application/json",
+         "accept-language": "zh-CN,zh;q=0.9",
+         "apptoken": "Ivf5n6o8CBu7CNpT45Gz+oWj9mcALzDJIWKqjkjMoMUk2RJi3KVeWITjwQ9jy55omysCxizJUnTKzwO1JheEPTA+CsyV+EcWMOmZNobMydaYTj1CUEVCSA0W0FvvnParUUTXRYbc2PzAbIiFTEhAra+hy0C4k0V7L9EV1ud9q/o=",
+         "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDI3MDAxNzk3MTksImlhdCI6MTc0MjY5Mjk3OSwidXNlcklkIjoiMTEzMDgzMSIsImp0aSI6ImY1ZjkwOTFlZDBiNWM1ZDRkODgzNGQ1NjJlYmNkOGQ5YmY5NzEwMDIifQ.UONzD7p7AX5UtyuUwEhV54gLH0voSlYz5hE_t99uiNY",
+         "cache-control": "no-cache",
+         "content-type": "application/json",
+         "operid": "300005",
+         "pragma": "no-cache",
+         "publickey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDc7i0VItfwG/8PRZ8/AEe55QFGJMs8Zt9vNZ1VRP3Wr1NbvkhrihX6MerUOR+EbKu8hb91ue0YrLR+Lb3TBy2Ihyddwx2jCoZ2Cx67nRVaBQmWdwsOMhRviRVbOyflGdZ2oolw3b9kefK/UvuAAdLpPZzrl4FZWfm7FJrBLHyQQwIDAQAB",
+         "zoneid": "1321688157"
+      }
+   },
+   "cities": [
+      "白银市",
+      "定西市",
+      "甘南藏族自治州",
+      "嘉峪关市",
+      "金昌市",
+      "酒泉市",
+      "兰州市",
+      "临夏回族自治州",
+      "陇南市",
+      "平凉市",
+      "庆阳市",
+      "天水市",
+      "武威市",
+      "张掖市"
+   ]
+}

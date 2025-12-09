@@ -33,7 +33,8 @@ class AlertUtils:
         self.data = read_cfg()
         self.session_id = None
 
-    def set_session_id(self):
+    # test func
+    def set_session_id(self, day):
         logger.log("开始设置session id")
 
         data = self.data['set_session_id']
@@ -43,17 +44,40 @@ class AlertUtils:
         payload = data['payload']
 
         session_id = int(time.time())
-        today = datetime.today()
+        today = day
         yesterday = today - timedelta(days=1)
 
         payload['sessionId'] = session_id
         payload['dateBean']['startTime'] = yesterday.strftime("%Y-%m-%d") + " 00:00:00"
-        payload['dateBean']['endTime'] = today.strftime("%Y-%m-%d") + " 23:59:59"
+        payload['dateBean']['endTime'] = yesterday.strftime("%Y-%m-%d") + " 23:59:59"
 
         safe_post(url, headers, payload)
 
         self.session_id = session_id
         logger.log(f"session id: {session_id}")
+
+
+    # def set_session_id(self):
+        # logger.log("开始设置session id")
+
+        # data = self.data['set_session_id']
+
+        # url = data['url']
+        # headers = data['headers']
+        # payload = data['payload']
+
+        # session_id = int(time.time())
+        # today = datetime.today()
+        # yesterday = today - timedelta(days=1)
+
+        # payload['sessionId'] = session_id
+        # payload['dateBean']['startTime'] = yesterday.strftime("%Y-%m-%d") + " 00:00:00"
+        # payload['dateBean']['endTime'] = yesterday.strftime("%Y-%m-%d") + " 23:59:59"
+
+        # safe_post(url, headers, payload)
+
+        # self.session_id = session_id
+        # logger.log(f"session id: {session_id}")
 
 
     # export csv file
@@ -86,14 +110,21 @@ class AlertUtils:
 
 
     def download_files(self, file_src):
-        logger.log("开始下载告警文件压缩包")
+        logger.log(f"开始下载告警文件压缩包，收到的文件地址: {file_src}")
 
         data = self.data['download_files']
+
 
         url = data['url'] + file_src
         headers = data['headers']
 
-        res = requests.get(url, headers)
+        logger.log(f"头部: {headers}")
+
+        logger.log(f"文件下载链接: {url}")
+
+        res = requests.get(url, headers=headers, stream=True)
+
+        # logger.log(f"下载结果: {res.content}")
 
         zip_name = file_src.split('/')[-1]
         with open(os.path.join(path_utils.zips_path, zip_name), 'wb') as f:

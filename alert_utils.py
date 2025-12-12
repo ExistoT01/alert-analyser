@@ -3,13 +3,11 @@ import os.path
 import requests
 import time
 from datetime import datetime, timedelta
-from get_config import read_cfg
-from path_utils import PathUtils
+from config_utils import Config_Utils
 from logger import Logger
 
-
-path_utils = PathUtils()
-logger = Logger(True, path_utils.log_path)
+config = Config_Utils()
+logger = Logger(True, config.log_path)
 
 
 def safe_post(url, headers=None, json=None, retries=5, backoff=2):
@@ -30,7 +28,7 @@ class AlertUtils:
     def __init__(self):
         super().__init__()
 
-        self.data = read_cfg()
+        self.data = config._config
         self.session_id = None
 
     # test func
@@ -99,7 +97,7 @@ class AlertUtils:
         res = requests.get(url, headers=headers, stream=True)
 
         zip_name = file_src.split('/')[-1]
-        with open(os.path.join(path_utils.zips_path, zip_name), 'wb') as f:
+        with open(os.path.join(config.zips_path, zip_name), 'wb') as f:
             f.write(res.content)
 
         logger.log("文件下载完毕，请在文件夹中查看！")

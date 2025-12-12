@@ -4,13 +4,13 @@ import pandas as pd
 import xlwings as xw
 from datetime import datetime, timedelta
 
-import get_config
-from path_utils import PathUtils
+import config_utils
+from config_utils import Config_Utils
 from logger import Logger
 
 
-path_utils = PathUtils()
-logger = Logger(True, path_utils.log_path)
+config = Config_Utils()
+logger = Logger(True, config.log_path)
 
 
 '''
@@ -27,14 +27,14 @@ def col_letter(n):
 class ExcelUtils:
     def __init__(self):
         super().__init__()
-        self.cities = get_config.read_cfg()['cities']
+        self.cities = config.cities
 
     # 解压文件
     def unzip(self, file_name, day):
         logger.log(f'正在解压文件：{file_name}')
 
-        with zipfile.ZipFile(os.path.join(path_utils.zips_path, file_name)) as f:
-            target_path = os.path.join(path_utils.data_path, day.strftime("%m-%d"))
+        with zipfile.ZipFile(os.path.join(config.zips_path, file_name)) as f:
+            target_path = os.path.join(config.data_path, day.strftime("%m-%d"))
             os.makedirs(target_path, exist_ok=True)
 
             # 如果目录不为空，清空目录
@@ -79,7 +79,7 @@ class ExcelUtils:
             (~merged_df["专业"].fillna("").isin(drop_prof))
         ]
 
-        target_path = os.path.join(path_utils.data_path, day.strftime("%m-%d"))
+        target_path = os.path.join(config.data_path, day.strftime("%m-%d"))
         os.makedirs(target_path, exist_ok=True)
 
         file_name = "merged_" + day.strftime("%m_%d") + ".xlsx"
@@ -136,7 +136,7 @@ class ExcelUtils:
             if item.Name not in self.cities:
                 item.Visible = False
 
-        target_path = os.path.join(path_utils.data_path, day.strftime("%m-%d"), "new_pivot.xlsx")
+        target_path = os.path.join(config.data_path, day.strftime("%m-%d"), "new_pivot.xlsx")
         wb.save(target_path)
         wb.close()
 
@@ -193,7 +193,7 @@ class ExcelUtils:
         ws_chart.copy(before=wb_pivot.sheets[0])
 
         file_name = f"{yesterday.strftime("%Y%m%d")}告警日分析.xlsx"
-        wb_pivot.save(os.path.join(path_utils.backbone_data_path, file_name))
+        wb_pivot.save(os.path.join(config.backbone_data_path, file_name))
         wb_chart.close()
         wb_pivot.close()
 

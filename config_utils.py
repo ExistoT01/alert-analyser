@@ -9,6 +9,7 @@ class Config_Utils:
         self._config = self._load_config()
 
         self.version = self._config["version"]
+        self.app_icon_path = self._config["app_icon_path"]
 
         self.zips_path = self._config["zips_path"]
         self.data_path = self._config["data_path"]

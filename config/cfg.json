@@ -2,6 +2,7 @@
     "version": "2.0",
     "zips_path": "./zips",
     "data_path": "./data",
+    "app_icon_path": "./res/icons/favicon.ico",
     "light_icon_path": "./res/imgs/light-analyse.png",
     "dark_icon_path": "./res/imgs/dark-analyse.png",
     "setting_icon_path": "./res/icons/setting.png",
@@ -47,6 +48,7 @@
             },
             "mConditionMaps": {},
             "fieldIds": [
+                24,
                 33,
                 23,
                 91,

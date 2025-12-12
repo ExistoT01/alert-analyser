@@ -4,7 +4,6 @@ import pandas as pd
 import xlwings as xw
 from datetime import datetime, timedelta
 
-import config_utils
 from config_utils import Config_Utils
 from logger import Logger
 
@@ -13,9 +12,8 @@ config = Config_Utils()
 logger = Logger(True, config.log_path)
 
 
-'''
-将列号转换为 Excel 列字母
-'''
+
+# 将列号转换为 Excel 列字母
 def col_letter(n):
     result = ""
     while n > 0:
@@ -93,7 +91,9 @@ class ExcelUtils:
     def gen_pivot_table(self, file_path, day):
         logger.log("开始生成数据透视表")
 
-        wb = xw.Book(file_path)
+        app = xw.App(visible=False, add_book=False)
+
+        wb = app.books.open(file_path)
         ws_data = wb.sheets['Sheet1']
 
         yesterday = day - timedelta(days=1)
@@ -140,6 +140,8 @@ class ExcelUtils:
         wb.save(target_path)
         wb.close()
 
+        app.quit()
+
         logger.log("数据透视表生成完毕")
         return target_path
 
@@ -183,8 +185,8 @@ class ExcelUtils:
         # 转换新列对应字母
         last_col_index = col_letter(last_col)
 
-        new_source_str = f"{chart_sheet_name}!$DH$1:${last_col_index}$1,{chart_sheet_name}!$DH$16:${last_col_index}$16"
-
+        new_source_str = f"{chart_sheet_name}!$B$1:${last_col_index}$1,{chart_sheet_name}!$B$16:${last_col_index}$16"
+        
         chart = ws_chart.api.ChartObjects(1).Chart
 
         chart.SetSourceData(ws_chart.range(new_source_str).api)
@@ -196,5 +198,7 @@ class ExcelUtils:
         wb_pivot.save(os.path.join(config.backbone_data_path, file_name))
         wb_chart.close()
         wb_pivot.close()
+
+        app.quit()
 
         logger.log("数据图表更新完毕！")

@@ -34,6 +34,7 @@ class App(ctk.CTk):
         self.geometry("400x400")
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("dark-blue")
+        self.iconbitmap(config.app_icon_path)
 
         # fonts
         self.font_lovelo = ctk.CTkFont("Lovelo Line light")
@@ -423,8 +424,8 @@ class App(ctk.CTk):
     # 测试函数，目前用于月告警总结分析
     def test_func(self):
 
-        start_date = datetime(2025, 12, 8)
-        end_date = datetime(2025, 12, 8)
+        start_date = datetime(2025, 12, 11)
+        end_date = datetime(2025, 12, 11)
 
         day = start_date
         while day <= end_date:

@@ -7,3 +7,7 @@ logs/
 res/samples/
 zips/
 config/cfg.json.bak
+dist/
+build/
+.gitignore
+AlertAnalyser.spec

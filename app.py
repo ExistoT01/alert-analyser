@@ -329,15 +329,52 @@ class App(ctk.CTk):
 
     # 预先检查，检查不过不开始任务
     def pre_check(self, day):
+        # 当天报表已存在
+        yestday = day - timedelta(days=1)
+        yestday_str = yestday.strftime("%Y%m%d")
+        yestday_path = os.path.join(config.backbone_data_path, f"{yestday_str}告警日分析.xlsx")
+
+        if os.path.exists(yestday_path):
+            def _warn():
+                msg = CTkMessagebox(
+                    title="重复报表",
+                    message=f"{yestday_str}告警分析已存在，是否删除后重新生成？",
+                    icon="warning",
+                    option_1="删除",
+                    option_2="取消"
+                )
+
+                choice = msg if isinstance(msg, str) else getattr(msg, "get", lambda: None)()
+
+                if choice == "删除":
+                    try:
+                        os.remove(yestday_path)
+                    except Exception as e:
+                        raise e
+
+            self.after(0, _warn)
+
+            return False
+
         # 前一天的告警分析必须存在
         the_day_before_yesterday = day - timedelta(days=2)
-        date_str = the_day_before_yesterday.strftime("%Y%m%d")
-        last_day_file_path = os.path.join(config.backbone_data_path, f"{date_str}告警日分析.xlsx")
+        the_day_before_yesterday_str = the_day_before_yesterday.strftime("%Y%m%d")
+        last_day_file_path = os.path.join(config.backbone_data_path, f"{the_day_before_yesterday_str}告警日分析.xlsx")
 
         if not os.path.exists(last_day_file_path):
-            return False, f"{date_str}告警日分析不存在"
+            def _warn():
+                CTkMessagebox(
+                    title="无法生成报表",
+                    message=f"{the_day_before_yesterday_str}告警分析不存在，无法生成",
+                    icon="warning",
+                    option_1="确认",
+                )
+
+            self.after(0, _warn)
+            
+            return False
         
-        return True, None
+        return True
 
 
     # 导出文件/任务开始
@@ -346,21 +383,11 @@ class App(ctk.CTk):
         if day is None:
             day = datetime.today()
 
-        ok, msg = self.pre_check(day)
-        
-        if not ok:
-            def _warn():
-                CTkMessagebox(
-                    title="无法开始任务",
-                    message=msg,
-                    icon="warning",
-                    option_1="确认"
-                )
+        ok = self.pre_check(day)
 
-                self.set_status(f"生成不成功, 原因: {msg}")
-            
-            self.after(0, _warn)
-            return
+        if not ok:
+            self.set_status("告警未正常生成, 请检查日志或联系管理员")
+            return 
 
         self.show_progress()
 
@@ -424,8 +451,8 @@ class App(ctk.CTk):
     # 测试函数，目前用于月告警总结分析
     def test_func(self):
 
-        start_date = datetime(2025, 12, 11)
-        end_date = datetime(2025, 12, 11)
+        start_date = datetime(2025, 12, 13)
+        end_date = datetime(2025, 12, 16)
 
         day = start_date
         while day <= end_date:
